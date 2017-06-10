@@ -34,8 +34,7 @@ A JavaScript library for displaying Google Charts unobtrusively.
 <div 
     class="chart" 
     chart-type="pie"
-    data="data/genrePercentages.json"
-    >
+    data="data/genrePercentages.json">
 </div>
 ```
 
