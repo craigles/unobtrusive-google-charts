@@ -1,5 +1,5 @@
 # Unobtrusive Google Charts
-A tiny JavaScript library for displaying Google Charts unobtrusively.
+A JavaScript library for displaying Google Charts unobtrusively.
 ## Dependencies
 - [JQuery](http://jquery.com)
 - [Google Charts](https://developers.google.com/chart/)
@@ -12,6 +12,12 @@ A tiny JavaScript library for displaying Google Charts unobtrusively.
 - [GeoMap](https://developers.google.com/chart/interactive/docs/gallery/geomap) (Must have Google maps [API key](https://developers.google.com/maps/documentation/javascript/get-api-key))
 
 ## Usage
+```html
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/craigles/unobtrusive-google-charts@0.2/unobtrusive-google-charts.min.js"></script>
+</head>
+```
 
 ### Bar Graph
 ```html
