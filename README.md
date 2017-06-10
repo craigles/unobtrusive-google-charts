@@ -21,11 +21,7 @@ Add JQuery and Google Charts dependencies:
   <!-- If using GeoMap -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key={YourAPIKey}" type="text/javascript"></script>
   <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-</head>
-```
-
-```html
-<head>
+  
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/craigles/unobtrusive-google-charts@0.2/unobtrusive-google-charts.min.js"></script>
 </head>
 ```
