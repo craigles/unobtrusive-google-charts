@@ -69,7 +69,7 @@ A tiny JavaScript library for displaying Google Charts unobtrusively.
 </div>
 ```
 
-### Default Options
+## Default Options
 Options set here will be used if no options are set in the chart element.
 
 ```javascript
