@@ -31,7 +31,7 @@ Add JQuery and Google Charts dependencies:
 <div 
     class='chart' 
     chart-type='bar'
-    data='data/genresPlayedOnJJJ.json"'
+    data='data/genresPlayedOnJJJ.json'
     options='{"orientation": "vertical"}'>
 </div>
 ```
@@ -39,9 +39,9 @@ Add JQuery and Google Charts dependencies:
 ### Pie Graph
 ```html
 <div 
-    class="chart" 
-    chart-type="pie"
-    data="data/genrePercentages.json">
+    class='chart'
+    chart-type='pie'
+    data='data/genrePercentages.json'>
 </div>
 ```
 
