@@ -27,23 +27,28 @@ var unobtrusiveGoogleCharts = {
         var dataUrl = data || element.attr("data");
         var chartType = element.attr("chart-type");
         var options = element.data("options") || unobtrusiveGoogleCharts.options[chartType];
-        var dataColumns = element.attr("columns");
         var chartElement = element[0];
 
         $.getJSON(dataUrl, function (json) {
-            var data = new google.visualization.DataTable();
-
-            if (chartType === "table") {
-                $.each(JSON.parse(dataColumns), function (i, val) {
-                    data.addColumn(val[0], val[1]);
-                });
-                data.addRows(json);
-            } else {
-                data = google.visualization.arrayToDataTable(json);
-            }
-
+            var data = unobtrusiveGoogleCharts.getData(element, chartType, json);
             unobtrusiveGoogleCharts.drawChart[chartType](chartElement, data, options);
         });
+    },
+
+    getData: function(element, chartType, json) {
+        if (chartType === "table") {
+            var dataColumns = element.attr("columns");
+            var data = new google.visualization.DataTable();
+
+            $.each(JSON.parse(dataColumns), function (i, val) {
+                data.addColumn(val[0], val[1]);
+            });
+            data.addRows(json);
+
+            return data;
+        }
+
+        return google.visualization.arrayToDataTable(json);
     },
 
     bindChartSelectors: function () {
@@ -51,7 +56,7 @@ var unobtrusiveGoogleCharts = {
             unobtrusiveGoogleCharts.drawChartElement($(this));
         });
 
-        $('.chartSelect').change(function () {
+        $('select.chartSelect').change(function () {
             var data = $(this).val();
             var chartId = $(this).attr("chart-id");
             var chartElement = $("#" + chartId);
