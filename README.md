@@ -122,3 +122,8 @@ unobtrusiveGoogleCharts.options.line = {
     curveType: "function"
 }
 ```
+## Alternatives
+Consider using:
+- [Google Web Components](https://www.webcomponents.org/element/GoogleWebComponents/google-chart)
+- [React Google Charts](https://github.com/RakanNimer/react-google-charts)
+- [Angular 2 Google Charts](https://www.npmjs.com/package/angular2-google-chart)
