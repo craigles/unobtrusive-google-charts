@@ -15,14 +15,9 @@ A JavaScript library for displaying Google Charts unobtrusively.
 Add JQuery and Google Charts dependencies:
 ```html
 <head>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
-  <!-- If using GeoMap -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key={YourAPIKey}" type="text/javascript"></script>
-  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
-  
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/craigles/unobtrusive-google-charts@0.2/unobtrusive-google-charts.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/craigles/unobtrusive-google-charts@0.3/unobtrusive-google-charts.min.js"></script>
 </head>
 ```
 
@@ -121,6 +116,8 @@ unobtrusiveGoogleCharts.options.bar = {
 unobtrusiveGoogleCharts.options.line = {
     curveType: "function"
 }
+
+unobtrusiveGoogleCharts.options.mapsApiKey = "Your Api key";
 ```
 ## Alternatives
 Consider using:
