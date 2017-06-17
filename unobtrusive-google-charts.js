@@ -22,33 +22,35 @@ var unobtrusiveGoogleCharts = {
             table.draw(data, options);
         }
     },
+    chartPackages: {
+        "geoMap": ['geochart'],
+        "bar": ['bar'],
+        "pie": [],
+        "line": ['line'],
+        "table": ['table']
+    },
 
     drawChartElement: function (element, data) {
         var dataUrl = data || element.attr("data");
         var chartType = element.attr("chart-type");
         var options = element.data("options") || unobtrusiveGoogleCharts.options[chartType];
+        var dataColumns = element.attr("columns");
         var chartElement = element[0];
 
         $.getJSON(dataUrl, function (json) {
-            var data = unobtrusiveGoogleCharts.getData(element, chartType, json);
-            unobtrusiveGoogleCharts.drawChart[chartType](chartElement, data, options);
-        });
-    },
-
-    getData: function(element, chartType, json) {
-        if (chartType === "table") {
-            var dataColumns = element.attr("columns");
             var data = new google.visualization.DataTable();
 
-            $.each(JSON.parse(dataColumns), function (i, val) {
-                data.addColumn(val[0], val[1]);
-            });
-            data.addRows(json);
+            if (chartType === "table") {
+                $.each(JSON.parse(dataColumns), function (i, val) {
+                    data.addColumn(val[0], val[1]);
+                });
+                data.addRows(json);
+            } else {
+                data = google.visualization.arrayToDataTable(json);
+            }
 
-            return data;
-        }
-
-        return google.visualization.arrayToDataTable(json);
+            unobtrusiveGoogleCharts.drawChart[chartType](chartElement, data, options);
+        });
     },
 
     bindChartSelectors: function () {
@@ -56,17 +58,39 @@ var unobtrusiveGoogleCharts = {
             unobtrusiveGoogleCharts.drawChartElement($(this));
         });
 
-        $('select.chartSelect').change(function () {
+        $('.chartSelect').change(function () {
             var data = $(this).val();
             var chartId = $(this).attr("chart-id");
             var chartElement = $("#" + chartId);
 
             unobtrusiveGoogleCharts.drawChartElement(chartElement, data);
         });
+    },
+
+    loadOptions: function() {
+        var loadOptions = {
+            packages: ['corechart']
+        };
+
+        var packages = new Set();
+        $('div.chart').each(function () {
+            var chartPackages = unobtrusiveGoogleCharts.chartPackages[$(this).attr('chart-type')];
+            chartPackages.forEach(function(p) {
+                packages.add(p);
+            });
+        });
+
+        loadOptions.packages = Array.from(packages);
+        
+        if (unobtrusiveGoogleCharts.options.mapsApiKey) {
+            loadOptions.mapsApiKey = unobtrusiveGoogleCharts.options.mapsApiKey
+        }
+
+        return loadOptions;
     }
 }
 
 $(document).ready(function () {
-    google.charts.load('current', { packages: ['geochart', 'table', 'line', 'corechart', 'bar'] });
+    google.charts.load('current', unobtrusiveGoogleCharts.loadOptions());
     google.charts.setOnLoadCallback(unobtrusiveGoogleCharts.bindChartSelectors);
 });
