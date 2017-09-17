@@ -9,6 +9,10 @@ var unobtrusiveGoogleCharts = {
             var chart = new google.charts.Bar(element);
             chart.draw(data, google.charts.Bar.convertOptions(options));
         },
+        "barChart": function (element, data, options) {
+            var chart = new google.visualization.BarChart(element);
+            chart.draw(data, options);
+        },
         "pie": function (element, data, options) {
             var chart = new google.visualization.PieChart(element);
             chart.draw(data, options);
@@ -65,6 +69,7 @@ unobtrusiveGoogleCharts.init = {
     packagesForChart: {
         "geoMap": ['geochart'],
         "bar": ['bar'],
+        "barChart": ['bar'],
         "pie": [],
         "line": ['line'],
         "table": ['table']
