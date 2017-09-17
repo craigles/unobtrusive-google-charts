@@ -99,3 +99,14 @@ $(document).ready(function () {
     google.charts.load('current', unobtrusiveGoogleCharts.init.loadOptions());
     google.charts.setOnLoadCallback(unobtrusiveGoogleCharts.bindChartSelectors);
 });
+
+$(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+    this.resizeTO = setTimeout(function() {
+        $(this).trigger('resizeEnd');
+    }, 500);
+});
+
+$(window).on('resizeEnd', function() {
+    unobtrusiveGoogleCharts.bindChartSelectors();
+});
